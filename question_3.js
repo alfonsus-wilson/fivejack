@@ -56,10 +56,19 @@ function solution(relation) {
     correctColumn = [];
     for (let j = 0; j < candidateColumn.length; j++) {
         const element = candidateColumn[j];
+        
         let alreadyExists = false;
         for (let i = 0; i < correctColumn.length; i++) {
             const search = correctColumn[i];
-            if(element.join("").indexOf(search) === 0) {
+            let exists_inside = true;
+            for (let k = 0; k < search.length; k++) {
+                const e = search[k];
+                if(element.indexOf(e) === -1) {
+                    exists_inside = false;
+                    break
+                }
+            }
+            if(exists_inside) {
                 alreadyExists = true;
                 break;
             }
@@ -69,7 +78,7 @@ function solution(relation) {
         let currData = createDataFromColumn(element, relation);
         if(checkUnique(currData)) {
             answer += 1;
-            correctColumn.push(element.join(""));
+            correctColumn.push(element);
         }
     }
 

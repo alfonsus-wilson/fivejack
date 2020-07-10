@@ -21,7 +21,11 @@ function solution(N, users) {
     let userCount = users.length;
     for (let i = 0; i < myMap.length; i++) {
         const element = myMap[i];
-        myMap[i] = element/userCount;
+        if(element == 0) {
+            myMap[i] = 0;
+        } else {
+            myMap[i] = element/userCount;
+        }
         userCount -= element;
     }
 
